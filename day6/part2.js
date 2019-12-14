@@ -2,12 +2,13 @@
 
 const fs = require('fs')
 const { parse } = require('./lib/parse')
-const { find } = require('./lib/objects')
+const { find, measurePath } = require('./lib/objects')
 
 const objects = parse(fs.readFileSync('./input.txt', { encoding: 'utf8' }))
 
 const you = find(objects, 'YOU')
 const san = find(objects, 'SAN')
 
-console.log(you)
-console.log(san)
+const length = measurePath(objects, you, san)
+
+console.log('length =', length)

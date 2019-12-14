@@ -17,3 +17,25 @@ exports.count = objects => {
 
   return count
 }
+
+exports.measurePath = (objects, from, to) => {
+  const fromParentNames = []
+
+  for (const p of from.iterateParents()) {
+    fromParentNames.push(p.name)
+  }
+
+  const toParentsPath = []
+
+  for (const p of to.iterateParents()) {
+    toParentsPath.push(p.name)
+
+    const idxCommonParent = fromParentNames.indexOf(p.name)
+
+    if (idxCommonParent !== -1) {
+      // fromParentNames.slice(0, idxCommonParent) -> first parent until common parent
+      // -1 -> Remove common
+      return toParentsPath.length - 1 + idxCommonParent
+    }
+  }
+}

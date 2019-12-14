@@ -9,4 +9,3 @@ const root = find(objects, '1')
 
 assert.equal(root.name, '1')
 assert.equal(count(objects), 13)
-
